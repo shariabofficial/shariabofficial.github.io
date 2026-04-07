@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sound Mind Starter Kit — Sharia Brooks</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --sand: #EDE8DF;
+    --warm-white: #FDFBF8;
+    --gold: #C9A96E;
+    --gold-dark: #A07840;
+    --charcoal: #2C2C2C;
+    --charcoal-deep: #1A1815;
+    --warm-gray: #7A7570;
+    --rose: #C4A090;
+    --rose-light: #EDD9D0;
+    --text: #3A3530;
+    --ocean: #2A3540;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* TYPOGRAPHY */
+  .display { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+  .script { font-family: 'Great Vibes', cursive; color: var(--gold); }
+  .caps { font-family: 'Jost', sans-serif; font-weight: 400; letter-spacing: 0.25em; font-size: 0.62rem; text-transform: uppercase; }
+  .gold-line { width: 48px; height: 1px; background: var(--gold); }
+  .gold-line.center { margin: 0 auto; }
+
+  /* ======================== */
+  /* PAGE 1 — COVER */
+  /* ======================== */
+  .cover {
+    background: var(--charcoal-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 60px;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 30%, rgba(196,160,144,0.07) 0%, transparent 50%);
+  }
+
+  .cover-border { position: absolute; inset: 20px; border: 1px solid rgba(201,169,110,0.15); pointer-events: none; }
+  .corner { position: absolute; width: 14px; height: 14px; border-color: var(--gold); border-style: solid; opacity: 0.45; }
+  .corner.tl { top: 20px; left: 20px; border-width: 1px 0 0 1px; }
+  .corner.tr { top: 20px; right: 20px; border-width: 1px 1px 0 0; }
+  .corner.bl { bottom: 20px; left: 20px; border-width: 0 0 1px 1px; }
+  .corner.br { bottom: 20px; right: 20px; border-width: 0 1px 1px 0; }
+
+  .cover-inner { position: relative; z-index: 1; max-width: 600px; }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(201,169,110,0.12);
+    border: 1px solid rgba(201,169,110,0.25);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 7px 20px;
+    margin-bottom: 36px;
+  }
+
+  .cover-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(250,247,242,0.6);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+  }
+
+  .cover-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .cover-divider span { width: 48px; height: 1px; background: var(--gold); opacity: 0.35; }
+  .cover-diamond { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+    color: rgba(250,247,242,0.4);
+    max-width: 420px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+
+  .cover-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 48px;
+    text-align: left;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .include-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: rgba(250,247,242,0.65);
+  }
+
+  .include-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+  .cover-author {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--gold);
+  }
+
+  .cover-handle {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.2);
+    margin-top: 4px;
+  }
+
+  /* ======================== */
+  /* PAGE 2 — INTRO */
+  /* ======================== */
+  .intro-page {
+    background: var(--warm-white);
+    padding: 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .intro-page::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .section-sub {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.4rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    line-height: 1.95;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .body-text strong { font-weight: 600; color: var(--gold-dark); }
+
+  .pull-quote {
+    border-left: 2px solid var(--gold);
+    padding: 20px 28px;
+    margin: 32px 0;
+    background: rgba(201,169,110,0.05);
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--charcoal);
+  }
+
+  /* ======================== */
+  /* PAGE 3 — QUIZ */
+  /* ======================== */
+  .quiz-page {
+    background: var(--charcoal-deep);
+    padding: 80px 70px;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .quiz-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(201,169,110,0.08) 0%, transparent 55%);
+  }
+
+  .quiz-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    position: relative; z-index: 1;
+  }
+
+  .quiz-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.45);
+    margin-bottom: 40px;
+    position: relative; z-index: 1;
+    max-width: 520px;
+  }
+
+  .quiz-question {
+    margin-bottom: 36px;
+    position: relative; z-index: 1;
+  }
+
+  .question-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    opacity: 0.55;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+
+  .question-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(201,169,110,0.15);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .option:hover { border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.05); }
+  .option.selected { border-color: var(--gold); background: rgba(201,169,110,0.1); }
+
+  .option-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    opacity: 0.6;
+    width: 20px;
+    flex-shrink: 0;
+  }
+
+  .option-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.65);
+    line-height: 1.5;
+  }
+
+  .quiz-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    cursor: pointer;
+    border: none;
+    margin-top: 32px;
+    position: relative; z-index: 1;
+    transition: all 0.3s;
+  }
+
+  .quiz-btn:hover { background: var(--gold-dark); color: var(--cream); }
+
+  /* Quiz Results */
+  .quiz-result {
+    display: none;
+    position: relative; z-index: 1;
+    margin-top: 40px;
+  }
+
+  .result-box {
+    border: 1px solid rgba(201,169,110,0.3);
+    padding: 36px 40px;
+    position: relative;
+  }
+
+  .result-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .result-type {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .result-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.6);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+
+  .result-next {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gold);
+  }
+
+  /* ======================== */
+  /* PAGE 4 — SCRIPTURE-SCIENCE */
+  /* ======================== */
+  .science-page {
+    background: var(--sand);
+    padding: 80px 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .science-block {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .science-circle {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+    flex-shrink: 0;
+  }
+
+  .science-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+
+  .science-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--warm-gray);
+  }
+
+  .scripture-box {
+    background: var(--charcoal);
+    padding: 32px 40px;
+    margin: 36px 0;
+    position: relative;
+  }
+
+  .scripture-box::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: -8px; left: 18px;
+    line-height: 1;
+  }
+
+  .scripture-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.7;
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+
+  .scripture-ref {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ======================== */
+  /* PAGE 5 — BREATH PRAYER TOOL */
+  /* ======================== */
+  .tool-page {
+    background: var(--ocean);
+    padding: 80px 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .tool-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.1) 0%, transparent 55%);
+  }
+
+  /* Animated breath circle */
+  .breath-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+    position: relative; z-index: 1;
+  }
+
+  .breath-circle {
+    width: 160px;
+    height: 160px;
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  .breath-circle::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+  }
+
+  .breath-circle.inhale {
+    transform: scale(1.15);
+    border-color: rgba(201,169,110,0.6);
+    background: rgba(201,169,110,0.05);
+  }
+
+  .breath-circle.exhale {
+    transform: scale(0.9);
+    border-color: rgba(201,169,110,0.2);
+  }
+
+  .breath-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(250,247,242,0.6);
+    text-align: center;
+    line-height: 1.5;
+    max-width: 130px;
+  }
+
+  .breath-phase {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    height: 16px;
+  }
+
+  .breath-steps {
+    position: relative; z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .breath-step-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .breath-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-top: 3px;
+  }
+
+  .breath-content {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: rgba(250,247,242,0.75);
+    line-height: 1.55;
+  }
+
+  .breath-why {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.35);
+    line-height: 1.65;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+    position: relative; z-index: 1;
+  }
+
+  /* ======================== */
+  /* PAGE 6 — SELF ASSESSMENT */
+  /* ======================== */
+  .assessment-page {
+    background: var(--warm-white);
+    padding: 80px 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .assessment-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--charcoal);
+    margin-bottom: 36px;
+    max-width: 580px;
+  }
+
+  .assessment-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .assess-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .assess-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+
+  .assess-check {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .check-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(201,169,110,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .check-box.checked { background: var(--gold); border-color: var(--gold); }
+  .check-box.checked::after { content: '✓'; color: var(--charcoal); font-size: 0.7rem; font-family: 'Jost', sans-serif; }
+
+  .check-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+  }
+
+  .assess-result {
+    margin-top: 36px;
+    display: none;
+  }
+
+  .assess-result-box {
+    background: var(--charcoal);
+    padding: 32px 36px;
+    position: relative;
+  }
+
+  .assess-result-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), var(--rose));
+  }
+
+  .assess-result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .assess-result-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.6);
+    line-height: 1.75;
+  }
+
+  /* ======================== */
+  /* PAGE 7 — CTA */
+  /* ======================== */
+  .cta-page {
+    background: var(--charcoal-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 60px;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .cta-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,169,110,0.07) 0%, transparent 60%);
+  }
+
+  .cta-inner {
+    max-width: 600px;
+    position: relative; z-index: 1;
+  }
+
+  .cta-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .cta-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.5);
+    line-height: 1.8;
+    margin-bottom: 36px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .cta-option {
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 24px 28px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .cta-option::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cta-option:hover { border-color: rgba(201,169,110,0.4); background: rgba(201,169,110,0.04); }
+  .cta-option:hover::before { opacity: 1; }
+
+  .cta-option.featured {
+    border-color: rgba(201,169,110,0.35);
+    background: rgba(201,169,110,0.06);
+  }
+
+  .cta-option.featured::before { opacity: 1; }
+
+  .option-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.45rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .option-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+
+  .option-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.4);
+    line-height: 1.6;
+  }
+
+  .option-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    font-weight: 300;
+    float: right;
+    margin-top: -36px;
+  }
+
+  .cta-sig {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: var(--gold);
+    display: block;
+    margin-top: 36px;
+  }
+
+  .cta-handle {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.2);
+    margin-top: 6px;
+  }
+
+  /* PAGE FOOTER */
+  .page-footer {
+    position: absolute;
+    bottom: 24px; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+  }
+
+  .footer-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    opacity: 0.45;
+  }
+
+  .footer-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: 0.35; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .cover, .intro-page, .quiz-page, .science-page, .tool-page, .assessment-page, .cta-page {
+      padding: 60px 32px;
+    }
+    .assessment-item { grid-template-columns: 32px 1fr; gap: 12px; }
+    .assess-check { display: none; }
+  }
+</style>
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2249368');
+</script>
+<!-- End MailerLite Universal -->
+</head>
+<body>
+
+<!-- ======================== -->
+<!-- PAGE 1: COVER -->
+<!-- ======================== -->
+<div class="page cover">
+  <div class="cover-border"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="cover-inner">
+    <div class="cover-badge">Free Gift · From Sharia Brooks</div>
+
+    <h1 class="cover-script">The Sound Mind</h1>
+    <h2 class="cover-title">Starter Kit</h2>
+
+    <div class="cover-divider">
+      <span></span>
+      <div class="cover-diamond"></div>
+      <span></span>
+    </div>
+
+    <p class="cover-subtitle">Before you can think your way free, you need to understand what has been keeping you stuck. This guide is where that understanding begins.</p>
+
+    <div class="cover-includes">
+      <div class="include-item"><div class="include-dot"></div><span>The Invisible Chains Quiz — identify your pattern</span></div>
+      <div class="include-item"><div class="include-dot"></div><span>The science behind why you stayed</span></div>
+      <div class="include-item"><div class="include-dot"></div><span>The 4-7-8 Breath Prayer tool</span></div>
+      <div class="include-item"><div class="include-dot"></div><span>Your personal healing readiness assessment</span></div>
+      <div class="include-item"><div class="include-dot"></div><span>Your personalized next step</span></div>
+    </div>
+
+    <p class="cover-author">Sharia Brooks</p>
+    <p class="cover-handle">@shariabofficial</p>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 2: WELCOME -->
+<!-- ======================== -->
+<div class="page intro-page">
+  <span class="section-label">Welcome</span>
+  <h2 class="section-heading">Before We Begin,<br>I Need You to Know</h2>
+  <span class="section-sub">This is a safe space.</span>
+  <div class="gold-line" style="margin-bottom:28px;"></div>
+
+  <p class="body-text">You didn't end up here by accident. Something in you recognized that the way things have been going isn't the way things have to stay. That recognition? <strong>That is God moving.</strong></p>
+
+  <p class="body-text">This Starter Kit is not a replacement for the deeper work. It is an introduction to a framework — rooted in neuroscience and scripture — that I developed after losing my mother, my sister, and a 5-year relationship all in the same year.</p>
+
+  <p class="body-text">I needed to understand the <strong>biology of why I stayed stuck</strong> before I could move forward. And what I found changed everything. Not just about healing — but about purpose, identity, and what God was actually calling me to build.</p>
+
+  <p class="body-text">What you're about to work through will give you language for what you've been feeling. It will name the loop. And once you can name it — <strong>you can begin to break it.</strong></p>
+
+  <div class="pull-quote">
+    <p>"You cannot think your way out of a body that is wired for survival. But you can learn to regulate it — and that is exactly what this guide begins to teach you."</p>
+  </div>
+
+  <p style="font-family:'Great Vibes',cursive; font-size:1.8rem; color:var(--gold-dark); margin-top:20px;">Let's begin. — Sharia</p>
+
+  <div class="page-footer">
+    <span class="footer-text">The Sound Mind Starter Kit</span>
+    <div class="footer-dot"></div>
+    <span class="footer-text">Sharia Brooks · @shariabofficial</span>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 3: THE QUIZ -->
+<!-- ======================== -->
+<div class="page quiz-page">
+  <span class="section-label" style="color:var(--gold); position:relative; z-index:1;">The Invisible Chains Quiz</span>
+  <h2 class="quiz-heading">Which Pattern<br>Is Keeping You Stuck?</h2>
+  <p class="quiz-sub">Answer honestly. There are no wrong answers — only clearer mirrors. Select the option that feels most true right now.</p>
+
+  <div id="quiz-form">
+
+    <div class="quiz-question">
+      <div class="question-num">Question 01</div>
+      <div class="question-text">When things are good between you and someone who has hurt you, how do you feel?</div>
+      <div class="options">
+        <div class="option" data-q="q1" data-v="D" style="cursor:pointer;">
+          <span class="option-letter">A</span>
+          <span class="option-text">Relieved and hopeful — maybe this is the real them and things will stay this way</span>
+        </div>
+        <div class="option" data-q="q1" data-v="C" style="cursor:pointer;">
+          <span class="option-letter">B</span>
+          <span class="option-text">Exhausted — I'm always waiting for the other shoe to drop</span>
+        </div>
+        <div class="option" data-q="q1" data-v="F" style="cursor:pointer;">
+          <span class="option-letter">C</span>
+          <span class="option-text">Grateful — I just want peace so I try extra hard to keep it this way</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-question">
+      <div class="question-num">Question 02</div>
+      <div class="question-text">When you try to imagine your life without this person or situation, what happens?</div>
+      <div class="options">
+        <div class="option" data-q="q2" data-v="D" style="cursor:pointer;">
+          <span class="option-letter">A</span>
+          <span class="option-text">My mind goes blank — I genuinely cannot picture it</span>
+        </div>
+        <div class="option" data-q="q2" data-v="C" style="cursor:pointer;">
+          <span class="option-letter">B</span>
+          <span class="option-text">I feel physically anxious — like something bad will happen</span>
+        </div>
+        <div class="option" data-q="q2" data-v="F" style="cursor:pointer;">
+          <span class="option-letter">C</span>
+          <span class="option-text">I feel guilty — like I would be abandoning someone or failing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-question">
+      <div class="question-num">Question 03</div>
+      <div class="question-text">What does your body do when conflict is coming?</div>
+      <div class="options">
+        <div class="option" data-q="q3" data-v="C" style="cursor:pointer;">
+          <span class="option-letter">A</span>
+          <span class="option-text">My chest tightens and I feel like I can't breathe or think clearly</span>
+        </div>
+        <div class="option" data-q="q3" data-v="F" style="cursor:pointer;">
+          <span class="option-letter">B</span>
+          <span class="option-text">I immediately go into fix-it mode — I try to calm everyone down</span>
+        </div>
+        <div class="option" data-q="q3" data-v="D" style="cursor:pointer;">
+          <span class="option-letter">C</span>
+          <span class="option-text">I feel a rush — almost like an adrenaline hit — even though I hate it</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="quiz-question">
+      <div class="question-num">Question 04</div>
+      <div class="question-text">How do you describe yourself to others when talking about this situation?</div>
+      <div class="options">
+        <div class="option" data-q="q4" data-v="F" style="cursor:pointer;">
+          <span class="option-letter">A</span>
+          <span class="option-text">"I just don't want to cause drama" or "I'm the peacekeeper"</span>
+        </div>
+        <div class="option" data-q="q4" data-v="D" style="cursor:pointer;">
+          <span class="option-letter">B</span>
+          <span class="option-text">"They're not always like this" or "When they're good, they're really good"</span>
+        </div>
+        <div class="option" data-q="q4" data-v="C" style="cursor:pointer;">
+          <span class="option-letter">C</span>
+          <span class="option-text">"I know I should leave but I just can't seem to do it"</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="quiz-btn" onclick="showQuizResult()">See My Result →</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="quiz-result" class="quiz-result">
+    <div id="result-D" class="result-box" style="display:none;">
+      <div class="result-type">Your Primary Pattern</div>
+      <h3 class="result-title">The Dopamine Loop</h3>
+      <p class="result-body">You are not weak. You are chemically hooked. The cycle of highs and lows has trained your brain to crave the "good days" — and that craving is as real as any addiction. The unpredictability itself is what keeps you returning. Your brain releases dopamine when things are good precisely because they aren't always good. This is called Intermittent Reinforcement, and understanding it is the first key to your freedom.</p>
+      <p class="result-next">→ Your next step: Breaking the Invisible Chains goes deep into this pattern and gives you the neurological exit strategy.</p>
+    </div>
+    <div id="result-C" class="result-box" style="display:none;">
+      <div class="result-type">Your Primary Pattern</div>
+      <h3 class="result-title">The Cortisol Fog</h3>
+      <p class="result-body">Your body has been living in survival mode for so long that it has become your normal. Chronic cortisol flooding has literally unplugged the part of your brain responsible for logic, future planning, and setting boundaries. You aren't confused because you're weak — you're confused because your Prefrontal Cortex has been offline. This guide will begin to bring it back.</p>
+      <p class="result-next">→ Your next step: The breath tool on the next page was built specifically for you. Practice it daily for 7 days and notice what shifts.</p>
+    </div>
+    <div id="result-F" class="result-box" style="display:none;">
+      <div class="result-type">Your Primary Pattern</div>
+      <h3 class="result-title">The Fawn Response</h3>
+      <p class="result-body">You have become so good at keeping the peace that you've lost your own voice in the process. The Fawn Response is a trauma-based nervous system pattern where your body learned that the safest thing to do is make yourself agreeable. It protected you. But now it is keeping you small. Your gifts, your boundaries, your voice — they were buried to keep someone else comfortable. It is time to resurrect them.</p>
+      <p class="result-next">→ Your next step: From Heartbreak to Healing — Chapter 7 on Talent Resurrection was written specifically for you.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-text" style="color:rgba(250,247,242,0.25);">The Invisible Chains Quiz</span>
+    <div class="footer-dot"></div>
+    <span class="footer-text" style="color:rgba(250,247,242,0.25);">Sound Mind Starter Kit</span>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 4: SCIENCE + SCRIPTURE -->
+<!-- ======================== -->
+<div class="page science-page">
+  <span class="section-label">The Framework</span>
+  <h2 class="section-heading">Why Your Brain<br>Stayed — and How<br>God Already Knew</h2>
+  <span class="section-sub">Where neuroscience meets the Word</span>
+  <div class="gold-line" style="margin-bottom:32px;"></div>
+
+  <div class="science-block">
+    <div class="science-circle">D</div>
+    <div>
+      <div class="science-title">The Dopamine Hijack</div>
+      <p class="science-body">When someone treats you well inconsistently, your brain releases larger dopamine surges than it would for consistent kindness. You became addicted to the hope — not the person. This is neuroscience, not weakness. And it is why "just leaving" was never as simple as people made it sound.</p>
+    </div>
+  </div>
+
+  <div class="science-block">
+    <div class="science-circle">C</div>
+    <div>
+      <div class="science-title">Cortisol & Your Prefrontal Cortex</div>
+      <p class="science-body">Chronic stress floods your body with cortisol. At high levels, cortisol literally disconnects the part of your brain responsible for logic and future planning. You couldn't see a way out — not because there wasn't one, but because the part of your brain designed to find it was offline.</p>
+    </div>
+  </div>
+
+  <div class="scripture-box">
+    <p class="scripture-text">"For God has not given us a spirit of fear, but of power and of love and of a sound mind."</p>
+    <p class="scripture-ref">2 Timothy 1:7 — Notice: Power. Love. Sound Mind. These are not things you earn. They are gifts toxicity tried to steal.</p>
+  </div>
+
+  <p class="body-text" style="margin-top:8px;">Healing is not just "feeling better." It is the <strong>spiritual and physical act of reclaiming</strong> what was taken from you. God didn't design you for confusion. He designed you for clarity — and your brain can be retrained to access it.</p>
+
+  <div class="page-footer">
+    <span class="footer-text">The Framework</span>
+    <div class="footer-dot"></div>
+    <span class="footer-text">Sound Mind Starter Kit</span>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 5: BREATH PRAYER TOOL -->
+<!-- ======================== -->
+<div class="page tool-page">
+  <span class="section-label" style="color:rgba(201,169,110,0.7); position:relative; z-index:1;">Your First Regulation Tool</span>
+  <h2 class="section-heading" style="color:var(--cream); position:relative; z-index:1;">The 4-7-8<br>Breath Prayer</h2>
+  <span style="font-family:'Great Vibes',cursive; font-size:1.4rem; color:var(--gold); display:block; margin-bottom:24px; position:relative; z-index:1;">Practice this daily for 7 days.</span>
+  <div class="gold-line" style="margin-bottom:32px; position:relative; z-index:1;"></div>
+
+  <div class="breath-container">
+    <div class="breath-phase" id="breath-phase">Click to begin</div>
+    <div class="breath-circle" id="breath-circle" onclick="startBreath()">
+      <div class="breath-text" id="breath-inner">Tap to<br>start</div>
+    </div>
+  </div>
+
+  <div class="breath-steps">
+    <div class="breath-step-item">
+      <span class="breath-tag">Inhale · 4s</span>
+      <span class="breath-content">"God, You are my refuge..."</span>
+    </div>
+    <div class="breath-step-item">
+      <span class="breath-tag">Hold · 7s</span>
+      <span class="breath-content">"...my strength..."</span>
+    </div>
+    <div class="breath-step-item">
+      <span class="breath-tag">Exhale · 8s</span>
+      <span class="breath-content">"...and my peace."</span>
+    </div>
+  </div>
+
+  <p class="breath-why">Why it works: The extended exhale activates your parasympathetic nervous system — the "rest and digest" state. It signals to your brain that the threat has passed, which lowers cortisol and begins to bring your Prefrontal Cortex back online. This is not just breathing. This is your nervous system receiving permission to come home.</p>
+
+  <div class="page-footer">
+    <span class="footer-text" style="color:rgba(250,247,242,0.25);">Regulation Tool</span>
+    <div class="footer-dot"></div>
+    <span class="footer-text" style="color:rgba(250,247,242,0.25);">Sound Mind Starter Kit</span>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 6: ASSESSMENT -->
+<!-- ======================== -->
+<div class="page assessment-page">
+  <span class="section-label">Your Healing Readiness</span>
+  <h2 class="section-heading">Where Are You<br>in the Journey?</h2>
+  <span class="section-sub">An honest self-assessment</span>
+  <div class="gold-line" style="margin-bottom:28px;"></div>
+
+  <p class="assessment-intro">Check YES or NOT YET for each statement. There is no shame in either answer — this is simply a mirror to show you where you are right now, so you can see where you're going.</p>
+
+  <div class="assessment-item">
+    <span class="assess-num">01</span>
+    <span class="assess-question">I understand that my nervous system — not my character — kept me in the cycle.</span>
+    <div class="assess-check">
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Yes</span></div>
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Not Yet</span></div>
+    </div>
+  </div>
+
+  <div class="assessment-item">
+    <span class="assess-num">02</span>
+    <span class="assess-question">I have at least one person in my life who supports my healing without judgment.</span>
+    <div class="assess-check">
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Yes</span></div>
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Not Yet</span></div>
+    </div>
+  </div>
+
+  <div class="assessment-item">
+    <span class="assess-num">03</span>
+    <span class="assess-question">I can name one thing I gave up — a talent, a dream, a part of myself — to keep the peace.</span>
+    <div class="assess-check">
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Yes</span></div>
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Not Yet</span></div>
+    </div>
+  </div>
+
+  <div class="assessment-item">
+    <span class="assess-num">04</span>
+    <span class="assess-question">I believe God has a purpose for my life that exists beyond this season of pain.</span>
+    <div class="assess-check">
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Yes</span></div>
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Not Yet</span></div>
+    </div>
+  </div>
+
+  <div class="assessment-item">
+    <span class="assess-num">05</span>
+    <span class="assess-question">I am ready to do the work — not just read about it, but actually live it.</span>
+    <div class="assess-check">
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Yes</span></div>
+      <div class="check-option" onclick="toggleCheck(this)"><div class="check-box"></div><span class="check-label">Not Yet</span></div>
+    </div>
+  </div>
+
+  <button class="quiz-btn" onclick="showAssessResult()" style="background:var(--gold); border:none; cursor:pointer; margin-top:28px;">See My Readiness Result →</button>
+
+  <div id="assess-result" class="assess-result">
+    <div class="assess-result-box">
+      <div class="assess-result-title" id="assess-title"></div>
+      <p class="assess-result-body" id="assess-body"></p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-text">Healing Readiness Assessment</span>
+    <div class="footer-dot"></div>
+    <span class="footer-text">Sound Mind Starter Kit</span>
+  </div>
+</div>
+
+<!-- ======================== -->
+<!-- PAGE 7: CTA / NEXT STEPS -->
+<!-- ======================== -->
+<div class="page cta-page">
+  <div class="cta-inner">
+    <div class="gold-line center" style="margin-bottom:32px;"></div>
+    <span class="section-label" style="display:block; text-align:center; color:var(--gold);">Your Next Step</span>
+    <h2 class="cta-heading">You've Started.<br>Now Go Deeper.</h2>
+    <p class="cta-body">This Starter Kit gave you the language. The books and mentoring give you the full transformation. Here's where women go next based on where they are in the journey.</p>
+
+    <div class="cta-options">
+      <a href="https://stan.store/shariabofficial/p/from-heartbreak-to-healing-ebook-out-now" target="_blank" class="cta-option">
+        <div class="option-tag">Best First Step · E-Book · $27</div>
+        <div class="option-title">From Heartbreak to Healing</div>
+        <p class="option-desc">The heart book. For the woman who needs the roadmap through the pain — purpose, healing, and Godfidence on the other side.</p>
+      </a>
+
+      <a href="https://stan.store/shariabofficial/p/break-the-cycle-reclaim-your-mind-" target="_blank" class="cta-option">
+        <div class="option-tag">Go Deeper · E-Book · $27</div>
+        <div class="option-title">Breaking the Invisible Chains</div>
+        <p class="option-desc">The mind book. Full neuroscience framework, the biological exit strategy, and the scripture anchors that rewire everything.</p>
+      </a>
+
+      <a href="https://stan.store/shariabofficial/p/the-complete-restoration-bundle" target="_blank" class="cta-option featured">
+        <div class="option-tag">Most Popular · Both Books · $47</div>
+        <div class="option-title">The Complete Restoration Bundle</div>
+        <p class="option-desc">Both volumes together. The WHY and the HOW. Everything you need to understand the loop and the path forward.</p>
+      </a>
+
+      <a href="https://stan.store/shariabofficial/p/the-restoration-intensive--11-mentoring-session" target="_blank" class="cta-option">
+        <div class="option-tag">Ready to Go All In · 1:1 Mentoring · $750</div>
+        <div class="option-title">The Restoration Intensive</div>
+        <p class="option-desc">Private 4-week mentoring with Sharia. For the woman who is done reading about it and ready to actually live differently. 3 spots only.</p>
+      </a>
+    </div>
+
+    <div class="gold-line center" style="margin-bottom:20px;"></div>
+    <span class="cta-sig">Sharia Brooks</span>
+    <p class="cta-handle">@shariabofficial · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d2a1bab3a0bbb3b0bdb4b4bbb1bbb3be92abb3babdbdfcb1bdbf">[email&#160;protected]</a></p>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ========================
+// QUIZ LOGIC
+// ========================
+const selections = {};
+
+document.addEventListener('click', function(e) {
+  const option = e.target.closest('.option');
+  if (!option) return;
+  
+  const question = option.getAttribute('data-q');
+  const value = option.getAttribute('data-v');
+  if (!question || !value) return;
+
+  // Deselect all options in this question
+  const allOptions = document.querySelectorAll('.option[data-q="' + question + '"]');
+  allOptions.forEach(o => {
+    o.style.borderColor = 'rgba(201,169,110,0.15)';
+    o.style.background = 'transparent';
+  });
+
+  // Select clicked option
+  option.style.borderColor = '#C9A96E';
+  option.style.background = 'rgba(201,169,110,0.12)';
+  selections[question] = value;
+});
+
+// ========================
+// BREATH PRAYER TOOL
+// ========================
+let breathActive = false;
+let breathInterval = null;
+
+function startBreath() {
+  if (breathActive) return;
+  breathActive = true;
+
+  const circle = document.getElementById('breath-circle');
+  const phase = document.getElementById('breath-phase');
+  const inner = document.getElementById('breath-inner');
+
+  const steps = [
+    { label: 'Inhale · 4s', text: '"God, You are\nmy refuge..."', duration: 4000, class: 'inhale' },
+    { label: 'Hold · 7s', text: '"...my\nstrength..."', duration: 7000, class: '' },
+    { label: 'Exhale · 8s', text: '"...and my\npeace."', duration: 8000, class: 'exhale' },
+  ];
+
+  let stepIndex = 0;
+  let cycles = 0;
+
+  function runStep() {
+    if (cycles >= 3) {
+      phase.textContent = 'Complete ✦';
+      inner.textContent = 'Well done';
+      circle.className = 'breath-circle';
+      breathActive = false;
+      return;
+    }
+
+    const step = steps[stepIndex];
+    phase.textContent = step.label;
+    inner.textContent = step.text;
+    circle.className = 'breath-circle ' + step.class;
+
+    stepIndex++;
+    if (stepIndex >= steps.length) {
+      stepIndex = 0;
+      cycles++;
+    }
+
+    setTimeout(runStep, step.duration);
+  }
+
+  runStep();
+}
+
+// ========================
+// ASSESSMENT LOGIC
+// ========================
+function toggleCheck(el) {
+  const siblings = el.parentElement.querySelectorAll('.check-option');
+  siblings.forEach(s => s.querySelector('.check-box').classList.remove('checked'));
+  el.querySelector('.check-box').classList.add('checked');
+}
+
+function showAssessResult() {
+  const checked = document.querySelectorAll('.check-box.checked');
+  let yesCount = 0;
+
+  checked.forEach(box => {
+    const label = box.nextElementSibling.textContent;
+    if (label === 'Yes') yesCount++;
+  });
+
+  const resultEl = document.getElementById('assess-result');
+  const titleEl = document.getElementById('assess-title');
+  const bodyEl = document.getElementById('assess-body');
+
+  if (yesCount >= 4) {
+    titleEl.textContent = 'You Are Ready — And You Know It.';
+    bodyEl.textContent = 'You have done enough internal work to know what you need. The next step is not more reflection — it is action. The books and the mentoring will take what you already understand and turn it into a lived transformation. You are not starting over. You are stepping forward.';
+  } else if (yesCount >= 2) {
+    titleEl.textContent = 'You Are in the Gap — And That Is the Right Place to Be.';
+    bodyEl.textContent = 'The gap between surviving and thriving is exactly where this work lives. You have clarity in some areas and fog in others — and that is completely normal at this stage. The books are designed for exactly where you are. Start with From Heartbreak to Healing and let the understanding build naturally.';
+  } else {
+    titleEl.textContent = 'You Are at the Beginning — and the Beginning Is Brave.';
+    bodyEl.textContent = 'The fact that you picked up this guide means something shifted in you. You may not be able to name it yet. That is okay. Start with the breath tool daily for 7 days. Read one chapter of From Heartbreak to 
