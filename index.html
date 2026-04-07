@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharia Brooks — Healing. Purpose. Godfidence.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --sand: #EDE8DF;
+    --warm-white: #FDFBF8;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #A07840;
+    --charcoal: #2C2C2C;
+    --charcoal-deep: #1A1815;
+    --warm-gray: #7A7570;
+    --rose: #C4A090;
+    --rose-light: #EDD9D0;
+    --text: #3A3530;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===================== */
+  /* NAV */
+  /* ===================== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(26,24,21,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.6);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .nav-cta:hover { background: var(--gold-dark); color: var(--cream); }
+
+  /* ===================== */
+  /* HERO */
+  /* ===================== */
+  .hero {
+    min-height: 100vh;
+    background: var(--charcoal-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.1) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(196,160,144,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(201,169,110,0.05) 0%, transparent 50%);
+  }
+
+  .hero-border {
+    position: absolute;
+    inset: 28px;
+    border: 1px solid rgba(201,169,110,0.12);
+    pointer-events: none;
+  }
+
+  .hero-corner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .hero-corner.tl { top: 28px; left: 28px; border-width: 1px 0 0 1px; }
+  .hero-corner.tr { top: 28px; right: 28px; border-width: 1px 1px 0 0; }
+  .hero-corner.bl { bottom: 28px; left: 28px; border-width: 0 0 1px 1px; }
+  .hero-corner.br { bottom: 28px; right: 28px; border-width: 0 1px 1px 0; }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0.8;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3rem, 7vw, 5rem);
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 8px;
+    animation: fadeUp 1s ease 0.15s both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    color: var(--cream);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    margin-bottom: 36px;
+    animation: fadeUp 1s ease 0.25s both;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease 0.35s both;
+  }
+
+  .hero-divider span { width: 60px; height: 1px; background: var(--gold); opacity: 0.4; }
+  .hero-diamond { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(250,247,242,0.5);
+    max-width: 500px;
+    margin: 0 auto 52px;
+    line-height: 1.7;
+    animation: fadeUp 1s ease 0.45s both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease 0.55s both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover { background: var(--gold-dark); color: var(--cream); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-block;
+    border: 1px solid rgba(201,169,110,0.4);
+    color: rgba(250,247,242,0.7);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .hero-scroll span {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,169,110,0.4);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    opacity: 0.4;
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* ===================== */
+  /* STAT BAR */
+  /* ===================== */
+  .stat-bar {
+    background: var(--charcoal);
+    padding: 32px 48px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 8px 24px;
+    border-right: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.35);
+  }
+
+  /* ===================== */
+  /* SECTION SHARED */
+  /* ===================== */
+  section {
+    padding: 100px 48px;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .section-heading.light { color: var(--cream); }
+
+  .section-sub {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .gold-line { width: 48px; height: 1px; background: var(--gold); margin-bottom: 40px; }
+  .gold-line.center { margin: 0 auto 40px; }
+
+  /* ===================== */
+  /* ABOUT */
+  /* ===================== */
+  .about {
+    background: var(--warm-white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-image-wrap {
+    position: relative;
+  }
+
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--sand) 0%, var(--rose-light) 100%);
+  }
+
+  .about-img-placeholder span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .about-accent-box {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid var(--gold);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .about-accent-line {
+    position: absolute;
+    top: 24px;
+    left: -12px;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .about-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.95;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .about-body strong { font-weight: 600; color: var(--gold-dark); }
+
+  .about-sig {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--gold-dark);
+    margin-top: 32px;
+    display: block;
+  }
+
+  /* ===================== */
+  /* BOOKS */
+  /* ===================== */
+  .books {
+    background: var(--charcoal-deep);
+    position: relative;
+  }
+
+  .books::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(201,169,110,0.06) 0%, transparent 60%);
+  }
+
+  .books-header {
+    text-align: center;
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .book-card {
+    background: rgba(250,247,242,0.04);
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 40px 36px;
+    position: relative;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: block;
+  }
+
+  .book-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .book-card:hover { background: rgba(250,247,242,0.07); transform: translateY(-6px); }
+  .book-card:hover::before { opacity: 1; }
+
+  .book-card.featured {
+    border-color: rgba(201,169,110,0.35);
+    background: rgba(201,169,110,0.06);
+  }
+
+  .book-card.featured::before { opacity: 1; }
+
+  .book-badge {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--gold);
+    padding: 5px 12px;
+    margin-bottom: 24px;
+  }
+
+  .book-type {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .book-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .book-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(250,247,242,0.5);
+    margin-bottom: 32px;
+  }
+
+  .book-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .book-price span {
+    font-size: 0.9rem;
+    color: rgba(250,247,242,0.3);
+    text-decoration: line-through;
+    margin-left: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+
+  .book-btn {
+    display: block;
+    text-align: center;
+    border: 1px solid rgba(201,169,110,0.3);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .book-btn:hover, .book-card.featured .book-btn {
+    background: var(--gold);
+    color: var(--charcoal);
+    border-color: var(--gold);
+  }
+
+  /* ===================== */
+  /* MENTORING */
+  /* ===================== */
+  .mentoring {
+    background: var(--sand);
+  }
+
+  .mentoring-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .mentoring-left {}
+
+  .mentoring-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.95;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+  }
+
+  .mentoring-body strong { font-weight: 600; color: var(--gold-dark); }
+
+  .weeks {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 36px 0;
+  }
+
+  .week-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+  }
+
+  .week-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .week-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+
+  .week-body {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--warm-gray);
+  }
+
+  .mentoring-right {}
+
+  .price-card {
+    background: var(--charcoal);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--rose));
+  }
+
+  .price-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    border: 1px solid rgba(201,169,110,0.1);
+    border-radius: 50%;
+  }
+
+  .price-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .price-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-note {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.65rem;
+    color: rgba(250,247,242,0.35);
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+
+  .price-includes {
+    list-style: none;
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .price-includes li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: rgba(250,247,242,0.75);
+  }
+
+  .include-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .spots-tag {
+    display: inline-block;
+    background: rgba(201,169,110,0.15);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    margin-bottom: 20px;
+  }
+
+  .price-btn {
+    display: block;
+    text-align: center;
+    background: var(--gold);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 18px 32px;
+    text-decoration: none;
+    transition: all 0.3s;
+    margin-bottom: 12px;
+  }
+
+  .price-btn:hover { background: var(--gold-dark); color: var(--cream); }
+
+  .price-dm {
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    color: rgba(250,247,242,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===================== */
+  /* TESTIMONIAL / STORY */
+  /* ===================== */
+  .story {
+    background: var(--charcoal);
+    padding: 100px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '\201C';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20rem;
+    color: rgba(201,169,110,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .story-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    max-width: 740px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story-quote em { font-style: normal; color: var(--gold); }
+
+  /* ===================== */
+  /* BRANDS */
+  /* ===================== */
+  .brands {
+    background: var(--warm-white);
+    padding: 60px 48px;
+    text-align: center;
+  }
+
+  .brands-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    opacity: 0.6;
+    margin-bottom: 32px;
+  }
+
+  .brands-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .brand-name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    opacity: 0.45;
+    transition: opacity 0.3s;
+  }
+
+  .brand-name:hover { opacity: 0.8; }
+
+  /* ===================== */
+  /* INSTAGRAM STRIP */
+  /* ===================== */
+  .insta-strip {
+    background: var(--charcoal-deep);
+    padding: 80px 48px;
+    text-align: center;
+  }
+
+  .insta-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+    margin: 40px 0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .insta-cell {
+    aspect-ratio: 1;
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .insta-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(201,169,110,0.0);
+    transition: background 0.3s;
+  }
+
+  .insta-cell:hover::after { background: rgba(201,169,110,0.15); }
+
+  .insta-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--charcoal) 0%, #1E1C1A 100%);
+  }
+
+  .insta-inner span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2rem;
+    color: rgba(201,169,110,0.2);
+  }
+
+  /* ===================== */
+  /* FOOTER */
+  /* ===================== */
+  footer {
+    background: var(--charcoal-deep);
+    padding: 60px 48px 36px;
+    border-top: 1px solid rgba(201,169,110,0.1);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand {}
+
+  .footer-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 16px;
+    text-decoration: none;
+  }
+
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(250,247,242,0.4);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 16px;
+  }
+
+  .social-link {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .social-link:hover { color: var(--gold); }
+
+  .footer-col-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: rgba(250,247,242,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,169,110,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: rgba(250,247,242,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ===================== */
+  /* ANIMATIONS */
+  /* ===================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.2); }
+  }
+
+  /* ===================== */
+  /* RESPONSIVE */
+  /* ===================== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 70px; }
+    .stat-bar { grid-template-columns: repeat(2,1fr); padding: 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .books-grid { grid-template-columns: 1fr; }
+    .mentoring-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    .insta-grid { grid-template-columns: repeat(3,1fr); }
+    .brands-list { gap: 28px; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Sharia Brooks</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="#books">Books</a></li>
+    <li><a href="https://stan.store/shariabofficial/p/the-restoration-intensive--11-mentoring-session" target="_blank">Work With Me</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#0d7e656c7f646c6f626b6b646e646c614d746c656262236e6260">Contact</a></li>
+  </ul>
+  <a href="https://stan.store/shariabofficial/p/the-restoration-intensive--11-mentoring-session" target="_blank" class="nav-cta">Work With Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-border"></div>
+  <div class="hero-corner tl"></div>
+  <div class="hero-corner tr"></div>
+  <div class="hero-corner bl"></div>
+  <div class="hero-corner br"></div>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Faith &nbsp;·&nbsp; Healing &nbsp;·&nbsp; Purpose</p>
+    <h1 class="hero-script">Sharia Brooks</h1>
+    <h2 class="hero-title">Author · Mentor · Brand Messenger</h2>
+
+    <div class="hero-divider">
+      <span></span>
+      <div class="hero-diamond"></div>
+      <span></span>
+    </div>
+
+    <p class="hero-tagline">
+      For the woman who is done surviving and ready to walk in the life God actually designed for her.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="https://stan.store/shariabofficial/p/the-complete-restoration-bundle" target="_blank" class="btn-primary">Get the Books</a>
+      <a href="#mentoring" class="btn-secondary">Work With Me</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-item">
+    <div class="stat-num">279K</div>
+    <div class="stat-label">Monthly Reel Views</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">185K</div>
+    <div class="stat-label">Accounts Reached</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">93%</div>
+    <div class="stat-label">Female Audience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">87%</div>
+    <div class="stat-label">Non-Follower Reach</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <div class="about-img-frame">
+          <div class="about-img-placeholder">
+            <span>Sharia</span>
+          </div>
+        </div>
+        <div class="about-accent-box"></div>
+        <div class="about-accent-line"></div>
+      </div>
+      <div>
+        <span class="section-label">About Sharia</span>
+        <h2 class="section-heading">I Am Just the<br>Messenger.</h2>
+        <span class="section-sub">My story is the message.</span>
+        <div class="gold-line"></div>
+
+        <p class="about-body">
+          Hey sis. I'm Sharia — a 33-year-old single mom of two who was married and divorced before 21, who lost her mother and sister in 2023 while a 5-year relationship ended the same year with no closure.
+        </p>
+        <p class="about-body">
+          I know what it's like to wake up with that heavy weight in your chest, wondering how you got here and if you'll ever find <strong>you</strong> again. For years, I prioritized keeping the peace over protecting my purpose — until I realized that God didn't call me to be a martyr for a cycle of chaos.
+        </p>
+        <p class="about-body">
+          I didn't find healing through willpower. I found it by understanding the <strong>science of why our brains stay stuck</strong>, and then anchoring that science to the Word of God. That is what I teach. That is what I live. And now I'm doing it from <strong>Italy</strong> — one way ticket, two kids, and a whole lot of faith.
+        </p>
+        <p class="about-body">
+          I am just the messenger for the message God gave me. And today, that message is for you.
+        </p>
+
+        <a href="https://stan.store/shariabofficial/p/the-complete-restoration-bundle" target="_blank" class="btn-primary" style="margin-top:12px; display:inline-block;">Start Your Healing Journey</a>
+        <span class="about-sig">Sharia Brooks</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY QUOTE -->
+<section class="story">
+  <div class="section-inner">
+    <div class="gold-line center"></div>
+    <p class="story-quote">
+      "You aren't weak. You aren't failing. You have simply been stuck in a <em>biological and spiritual loop</em> designed to keep you small. This is your roadmap back to the sound mind God promised you."
+    </p>
+    <span class="section-label" style="display:block; text-align:center;">— Sharia Brooks</span>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books" id="books">
+  <div class="section-inner">
+    <div class="books-header">
+      <span class="section-label">The Books</span>
+      <h2 class="section-heading light">Your Complete<br>Restoration Library</h2>
+      <span class="section-sub">Written from lived experience</span>
+    </div>
+
+    <div class="books-grid">
+
+      <a href="https://stan.store/shariabofficial/p/from-heartbreak-to-healing-ebook-out-now" target="_blank" class="book-card">
+        <h3 class="book-title">From Heartbreak<br>to Healing</h3>
+        <p class="book-desc">A single mom's guide to healing, purpose, and walking in Godfidence after heartbreak. Navigate grief, rebuild your identity, and discover who God called you to be.</p>
+        <div class="book-price">$27</div>
+        <span class="book-btn">Get the Book →</span>
+      </a>
+
+      <a href="https://stan.store/shariabofficial/p/the-complete-restoration-bundle" target="_blank" class="book-card featured">
+        <div class="book-badge">Most Popular</div>
+        <p class="book-type">Bundle · Best Value</p>
+        <h3 class="book-title">The Complete<br>Restoration Bundle</h3>
+        <p class="book-desc">Both books together — the WHY and the HOW. Everything you need to understand the science of staying stuck and the roadmap to finally move forward.</p>
+        <div class="book-price">$47 <span>$54</span></div>
+        <span class="book-btn">Get the Bundle →</span>
+      </a>
+
+      <a href="https://stan.store/shariabofficial/p/break-the-cycle-reclaim-your-mind-" target="_blank" class="book-card">
+        <h3 class="book-title">Breaking the<br>Invisible Chains</h3>
+        <p class="book-desc">A woman's guide to the science of trauma bonding — why we do it, how to break free, the power of scripture, and the resurrection of her purpose.</p>
+        <div class="book-price">$27</div>
+        <span class="book-btn">Get the Book →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- MENTORING -->
+<section class="mentoring" id="mentoring">
+  <div class="section-inner">
+    <div class="mentoring-grid">
+      <div class="mentoring-left">
+        <span class="section-label">1:1 Mentoring</span>
+        <h2 class="section-heading">The Restoration<br>Intensive</h2>
+        <span class="section-sub">Four weeks. Real change.</span>
+        <div class="gold-line"></div>
+
+        <p class="mentoring-body">
+          You've read the books. You've done the journaling. Something still feels stuck. That's not a faith problem — that's a nervous system problem. And it has a solution.
+        </p>
+        <p class="mentoring-body">
+          This is not therapy and I'm not a licensed counselor. I'm a woman who has walked through the fire, studied the science, written the books, and is now rebuilding her life in Italy — <strong>and I'll take you with me.</strong>
+        </p>
+
+        <div class="weeks">
+          <div class="week-item">
+            <div class="week-num">01</div>
+            <div>
+              <div class="week-title">The Biology of the Bond</div>
+              <p class="week-body">Break the shame. Understand the dopamine loop, the cortisol fog, and why leaving felt impossible.</p>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-num">02</div>
+            <div>
+              <div class="week-title">Regulating Your Nervous System</div>
+              <p class="week-body">Practical tools to bring your nervous system back online so your logic, boundaries, and future-planning can actually function.</p>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-num">03</div>
+            <div>
+              <div class="week-title">The Spiritual Reclamation</div>
+              <p class="week-body">Aligning the neuroscience with 2 Timothy 1:7. Building your personal framework for a Sound Mind.</p>
+            </div>
+          </div>
+          <div class="week-item">
+            <div class="week-num">04</div>
+            <div>
+              <div class="week-title">Talent Resurrection</div>
+              <p class="week-body">Identify what toxicity made you bury. Name your gifts. Take your first real steps toward walking in them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mentoring-right">
+        <div class="price-card">
+          <p class="price-label">Founding Rate · Limited Spots</p>
+          <h3 class="price-heading">The Restoration<br>Intensive</h3>
+          <div class="price-amount">$750</div>
+          <p class="price-note">Price increases to $1,500 after founding cohort</p>
+
+          <ul class="price-includes">
+            <li><div class="include-dot"></div><span>Four 60-min private sessions</span></li>
+            <li><div class="include-dot"></div><span>Unlimited voice memo support (Mon–Fri)</span></li>
+            <li><div class="include-dot"></div><span>Both e-books included</span></li>
+            <li><div class="include-dot"></div><span>Custom action steps each week</span></li>
+            <li><div class="include-dot"></div><span>A woman who has actually lived this</span></li>
+          </ul>
+
+          <div class="spots-tag">⚡ Only 3 Spots Available</div>
+
+          <a href="https://stan.store/shariabofficial/p/the-restoration-intensive--11-mentoring-session" target="_blank" class="price-btn">Book My Spot — I'm Ready</a>
+          <p class="price-dm">Or DM "READY" on Instagram @shariabofficial</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands">
+  <div class="brands-label">Proven Brand Partnerships</div>
+  <div class="brands-list">
+    <span class="brand-name">Neutrogena</span>
+    <span class="brand-name">Biossance</span>
+    <span class="brand-name">Swanson Health</span>
+    <span class="brand-name">Conair</span>
+    <span class="brand-name">Versed</span>
+    <span class="brand-name">Flower Beauty</span>
+    <span class="brand-name">Froot Loops</span>
+    <span class="brand-name">Fresh Pickle</span>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<section class="insta-strip" id="contact">
+  <div class="section-inner">
+    <span class="section-label" style="text-align:center; display:block;">Follow the Journey</span>
+    <h2 class="section-heading light" style="text-align:center;">From California<br>to Italy — Live.</h2>
+    <span class="section-sub" style="text-align:center; display:block;">@shariabofficial</span>
+
+    <div class="insta-grid">
+      <div class="insta-cell"><div class="insta-inner"><span>S</span></div></div>
+      <div class="insta-cell"><div class="insta-inner"><span>h</span></div></div>
+      <div class="insta-cell"><div class="insta-inner"><span>a</span></div></div>
+      <div class="insta-cell"><div class="insta-inner"><span>r</span></div></div>
+      <div class="insta-cell"><div class="insta-inner"><span>i</span></div></div>
+    </div>
+
+    <a href="https://www.instagram.com/shariabofficial" target="_blank" class="btn-secondary" style="margin: 0 auto; display:inline-block;">Follow on Instagram</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo">Sharia Brooks</a>
+      <p class="footer-tagline">"I am just the messenger for the message God gave me. And today, that message is for you."</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/shariabofficial" target="_blank" class="social-link">Instagram</a>
+        <a href="/cdn-cgi/l/email-protection#bdced5dccfd4dcdfd2dbdbd4ded4dcd1fdc4dcd5d2d293ded2d0" class="social-link">Email</a>
+        <a href="https://stan.store/shariabofficial" target="_blank" class="social-link">Stan Store</a>
+      </div>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Shop</p>
+      <ul class="footer-links">
+        <li><a href="https://stan.store/shariabofficial/p/from-heartbreak-to-healing-ebook-out-now" target="_blank">From Heartbreak to Healing</a></li>
+        <li><a href="https://stan.store/shariabofficial/p/break-the-cycle-reclaim-your-mind-" target="_blank">Breaking the Invisible Chains</a></li>
+        <li><a href="https://stan.store/shariabofficial/p/the-complete-restoration-bundle" target="_blank">Complete Restoration Bundle</a></li>
+        <li><a href="https://stan.store/shariabofficial/p/the-restoration-intensive--11-mentoring-session" target="_blank">1:1 Mentoring Intensive</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Connect</p>
+      <ul class="footer-links">
+        <li><a href="about.html">About Sharia</a></li>
+        <li><a href="https://www.instagram.com/shariabofficial" target="_blank">@shariabofficial</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#17647f76657e76757871717e747e767b576e767f78783974787a"><span class="__cf_email__" data-cfemail="8af9e2ebf8e3ebe8e
