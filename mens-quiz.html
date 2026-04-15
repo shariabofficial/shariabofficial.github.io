@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Blind Spot · Sharia Brooks</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#c9a84c;--gold-l:#e2c77a;--gold-d:#7a6330;--gold-dim:#4a3e1e;
+  --bg:#0c0c0a;--card:#131310;--card2:#1b1b14;
+  --text:#f0ead8;--muted:#8a8470;--dim:#4a4840;
+  --border:rgba(201,168,76,.2);--bright:rgba(201,168,76,.48);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'EB Garamond',Georgia,serif;
+  min-height:100vh;overflow-x:hidden;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 20%, rgba(201,168,76,.04) 0%, transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── SCREEN SYSTEM ── */
+.screen{display:none;position:relative;z-index:1}
+.screen.active{display:block}
+#intro.active{display:flex}
+
+/* ── WRAP ── */
+.wrap{max-width:600px;margin:0 auto;padding:0 22px}
+
+/* ── PROGRESS BAR ── */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--gold-d),var(--gold),var(--gold-l));
+  transition:width .5s ease;z-index:100;
+}
+
+/* ── INTRO SCREEN ── */
+#intro{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 22px}
+.intro-inner{max-width:560px;text-align:center}
+.intro-tag{
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.3em;
+  color:var(--gold-d);margin-bottom:24px;
+}
+.intro-title{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(52px,11vw,78px);font-weight:300;font-style:italic;
+  line-height:1.05;color:#fff;margin-bottom:12px;
+}
+.intro-sub{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:.32em;
+  color:var(--gold);margin-bottom:30px;
+}
+.intro-rule{width:40px;height:1px;background:var(--gold-d);margin:0 auto 26px}
+.intro-copy{font-size:17px;line-height:1.8;color:var(--muted);font-style:italic;margin-bottom:36px;max-width:420px;margin-left:auto;margin-right:auto}
+
+/* Checklist */
+.checklist{list-style:none;display:inline-flex;flex-direction:column;gap:10px;margin-bottom:36px;text-align:left}
+.checklist li{
+  display:flex;align-items:center;gap:12px;
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.15em;color:var(--muted);
+}
+.checklist li::before{content:'✦';color:var(--gold-d);font-size:9px}
+
+/* Corner bracket box */
+.bframe{
+  position:relative;border:1px solid var(--border);padding:32px 28px;
+  margin-bottom:32px;
+}
+.bframe::before,.bframe::after,.bframe .bc::before,.bframe .bc::after{
+  content:'';position:absolute;width:18px;height:18px;
+  border-color:var(--gold);border-style:solid;
+}
+.bframe::before{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
+.bframe::after{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
+.bframe .bc::before{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
+.bframe .bc::after{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-block;padding:14px 32px;
+  font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.26em;
+  text-decoration:none;cursor:pointer;border:none;transition:.2s;
+}
+.btn-gold{background:var(--gold);color:#0c0c0a}
+.btn-gold:hover{background:var(--gold-l)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid var(--bright)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold-l)}
+.btn-full{display:block;width:100%;text-align:center;padding:15px}
+
+/* ── QUESTION SCREEN ── */
+#quiz{padding:0}
+.q-header{
+  text-align:center;padding:40px 22px 32px;
+  border-bottom:1px solid var(--border);
+}
+.q-count{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.26em;
+  color:var(--gold-d);margin-bottom:16px;
+}
+.q-brand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:22px;font-style:italic;color:var(--gold);margin-bottom:0;
+}
+
+.q-body{padding:36px 22px 20px;max-width:600px;margin:0 auto}
+
+.q-num{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.22em;
+  color:var(--gold-d);margin-bottom:14px;
+}
+.q-text{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(22px,5vw,28px);font-weight:400;line-height:1.4;
+  color:#fff;margin-bottom:32px;
+}
+
+/* Answer options */
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{
+  background:var(--card);border:1px solid var(--border);
+  padding:18px 20px;cursor:pointer;transition:.2s;
+  display:flex;align-items:flex-start;gap:14px;
+  font-size:15.5px;line-height:1.55;color:var(--muted);
+}
+.opt:hover{border-color:var(--gold-d);color:var(--text);background:rgba(201,168,76,.04)}
+.opt.selected{border-color:var(--gold);color:var(--text);background:rgba(201,168,76,.07)}
+.opt .opt-key{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.15em;
+  color:var(--gold-d);min-width:18px;margin-top:3px;flex-shrink:0;
+  transition:.2s;
+}
+.opt.selected .opt-key{color:var(--gold)}
+
+/* Nav */
+.q-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:24px 22px 40px;max-width:600px;margin:0 auto;
+}
+.q-dots{display:flex;gap:6px}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--dim);transition:.3s;
+}
+.dot.done{background:var(--gold-d)}
+.dot.current{background:var(--gold);transform:scale(1.25)}
+
+/* ── RESULT SCREEN ── */
+#result{min-height:100vh;padding:50px 0}
+
+.result-badge{
+  text-align:center;padding:0 22px 32px;
+}
+.result-badge .r-tag{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.28em;
+  color:var(--gold-d);margin-bottom:20px;
+}
+.result-badge .r-label{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:.22em;
+  color:var(--gold);margin-bottom:12px;
+  border:1px solid var(--border);display:inline-block;padding:7px 18px;
+}
+.result-badge h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(40px,9vw,62px);font-weight:300;font-style:italic;
+  color:#fff;line-height:1.1;margin-bottom:10px;
+}
+.result-badge .r-sub{
+  font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:.24em;
+  color:var(--gold);
+}
+
+.result-divider{
+  display:flex;align-items:center;gap:14px;
+  padding:0 22px;margin:28px auto;max-width:500px;
+}
+.result-divider .line{flex:1;height:1px;background:var(--border)}
+.result-divider .diamond{
+  width:8px;height:8px;transform:rotate(45deg);
+  background:var(--gold-d);flex-shrink:0;
+}
+
+.result-body{max-width:600px;margin:0 auto;padding:0 22px}
+
+.result-what{
+  background:var(--card);border:1px solid var(--border);
+  padding:28px 26px;margin-bottom:16px;
+}
+.result-what .wh-label{
+  font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.22em;
+  color:var(--gold-d);margin-bottom:12px;
+}
+.result-what p{font-size:16.5px;line-height:1.78;color:var(--text)}
+.result-what p em{color:var(--gold);font-style:italic}
+
+.result-signs{margin-bottom:28px}
+.result-signs .rs-label{
+  font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.22em;
+  color:var(--gold-d);margin-bottom:14px;
+}
+.sign-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 0;border-bottom:1px solid rgba(201,168,76,.08);
+  font-size:15px;color:var(--muted);line-height:1.55;
+}
+.sign-item::before{content:'✦';color:var(--gold-d);font-size:8px;margin-top:4px;flex-shrink:0}
+
+.result-cta{
+  background:var(--card2);border:1px solid var(--bright);
+  padding:30px 26px;margin-top:28px;text-align:center;
+}
+.result-cta .cta-label{
+  font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.22em;
+  color:var(--gold-d);margin-bottom:14px;
+}
+.result-cta h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:24px;font-style:italic;color:#fff;margin-bottom:6px;
+}
+.result-cta p{font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:22px}
+.retake{
+  margin-top:18px;display:block;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:.18em;
+  color:var(--dim);cursor:pointer;background:none;border:none;
+}
+.retake:hover{color:var(--muted)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.fade-up{animation:fadeUp .55s ease both}
+.fade-in{animation:fadeIn .4s ease both}
+
+@media(max-width:480px){
+  .intro-title{font-size:50px}
+  .q-text{font-size:20px}
+  .result-badge h2{font-size:38px}
+  .btn{padding:13px 22px;font-size:9.5px}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar" style="width:0%"></div>
+
+<!-- ═══════════════════════════════ INTRO ═══════════════════════════════ -->
+<div id="intro" class="screen active">
+  <div class="intro-inner">
+    <p class="intro-tag fade-up" style="animation-delay:.05s">SHARIA BROOKS · FREE 2-MINUTE QUIZ</p>
+
+    <div class="bframe fade-up" style="animation-delay:.15s">
+      <div class="bc"></div>
+      <h1 class="intro-title">Find Your<br>Blind Spot</h1>
+      <p class="intro-sub">THE PATTERN KEEPING YOU STUCK</p>
+      <div class="intro-rule"></div>
+      <p class="intro-copy">
+        Most men don't fail because of weakness.<br>
+        They fail because they can't see the pattern driving them.<br>
+        5 questions. 2 minutes. Total clarity.
+      </p>
+    </div>
+
+    <ul class="checklist fade-up" style="animation-delay:.25s">
+      <li>5 questions · under 2 minutes</li>
+      <li>Your pattern identified by name</li>
+      <li>Science-backed · Scripture-grounded</li>
+      <li>Personalized next step included</li>
+    </ul>
+
+    <button class="btn btn-gold fade-up" style="animation-delay:.35s" onclick="startQuiz()">
+      FIND MY BLIND SPOT →
+    </button>
+    <p style="margin-top:14px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:.16em;color:var(--dim)" class="fade-up" style="animation-delay:.4s">100% FREE · NO EMAIL REQUIRED</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ QUIZ ════════════════════════════════ -->
+<div id="quiz" class="screen">
+  <div class="q-header">
+    <p class="q-count" id="q-count">QUESTION 1 OF 5</p>
+    <p class="q-brand">Find Your Blind Spot</p>
+  </div>
+
+  <div class="q-body">
+    <p class="q-num" id="q-num">01</p>
+    <p class="q-text" id="q-text"></p>
+    <div class="options" id="options"></div>
+  </div>
+
+  <div class="q-nav">
+    <button class="btn btn-outline" id="back-btn" onclick="prevQ()" style="display:none">← BACK</button>
+    <div class="q-dots" id="dots"></div>
+    <button class="btn btn-gold" id="next-btn" onclick="nextQ()" disabled>NEXT →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ RESULT ══════════════════════════════ -->
+<div id="result" class="screen">
+  <div class="result-badge">
+    <p class="r-tag">YOUR BLIND SPOT IS</p>
+    <p class="r-label" id="r-label"></p>
+    <h2 id="r-title"></h2>
+    <p class="r-sub" id="r-sub"></p>
+  </div>
+
+  <div class="result-divider">
+    <div class="line"></div><div class="diamond"></div><div class="line"></div>
+  </div>
+
+  <div class="result-body">
+    <div class="result-what">
+      <p class="wh-label">WHAT THIS MEANS</p>
+      <p id="r-what"></p>
+    </div>
+
+    <div class="result-signs" style="margin-top:20px">
+      <p class="rs-label">YOU LIKELY RECOGNIZE THIS IN YOURSELF</p>
+      <div id="r-signs"></div>
+    </div>
+
+    <div class="result-what" style="margin-top:4px">
+      <p class="wh-label">THE SCIENCE BEHIND IT</p>
+      <p id="r-science"></p>
+    </div>
+
+    <div class="result-what" style="margin-top:12px">
+      <p class="wh-label">THE WORD ON IT</p>
+      <p id="r-scripture"></p>
+    </div>
+
+    <div class="result-cta">
+      <p class="cta-label">YOUR RECOMMENDED NEXT STEP</p>
+      <h3 id="r-cta-title"></h3>
+      <p id="r-cta-copy"></p>
+      <a id="r-cta-btn" href="/mens-session" class="btn btn-gold btn-full"></a>
+      <button class="retake" onclick="retake()">↩ RETAKE THE QUIZ</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── QUIZ DATA ────────────────────────────────────────────────────────────
+// Scoring: D = Dopamine Loop, C = Cortisol Fog, F = Fawn Response
+
+const questions = [
+  {
+    text: "When a relationship ends or goes cold, what's your most honest first reaction?",
+    options: [
+      { text: "I start thinking about what I could do to fix it or bring her back", key: "D" },
+      { text: "My mind races — I replay everything, can't shut it off", key: "C" },
+      { text: "I wonder what I did wrong and what I should have done differently", key: "F" },
+      { text: "I go quiet and just push through — I'll deal with it later", key: "C" },
+    ]
+  },
+  {
+    text: "Be honest: have you ever stayed in something — knowing it wasn't right — because the good moments felt too good to walk away from?",
+    options: [
+      { text: "Yes — the highs were incredible even if the lows were rough", key: "D" },
+      { text: "Yes — but mostly because I didn't trust my own judgment anymore", key: "C" },
+      { text: "Yes — I didn't want to be the one who gave up", key: "F" },
+      { text: "Not really — I usually leave before it gets too deep", key: "C" },
+    ]
+  },
+  {
+    text: "In conflict, which most sounds like you?",
+    options: [
+      { text: "I escalate trying to get resolution — I need it resolved now", key: "D" },
+      { text: "I go into overdrive mentally — I can't think straight when things are tense", key: "C" },
+      { text: "I back down to keep the peace even when I know I'm right", key: "F" },
+      { text: "I go cold and withdraw — it feels safer", key: "C" },
+    ]
+  },
+  {
+    text: "What do people in your life tend to rely on you for?",
+    options: [
+      { text: "Being the one who keeps trying, who doesn't quit", key: "D" },
+      { text: "Being reliable — even when you're falling apart inside", key: "C" },
+      { text: "Being easygoing — you make things comfortable for everyone else", key: "F" },
+      { text: "Being strong and handling things without complaint", key: "C" },
+    ]
+  },
+  {
+    text: "What does the phrase 'I can't stop thinking about her' mean to you?",
+    options: [
+      { text: "It's consuming — I know I should move on but the pull is real", key: "D" },
+      { text: "My brain won't let me rest — it's like an alarm that won't turn off", key: "C" },
+      { text: "I keep wondering if I was enough — if I could have done more", key: "F" },
+      { text: "I've felt it but I keep myself busy so I don't have to sit with it", key: "C" },
+    ]
+  }
+];
+
+// ── RESULTS DATA ─────────────────────────────────────────────────────────
+const results = {
+  D: {
+    label: "THE DOPAMINE LOOP",
+    title: "The Dopamine\nLoop",
+    sub: "ADDICTED TO THE HOPE, NOT THE PERSON",
+    what: "You're not addicted to her — you're addicted to the <em>version of her</em> that showed up in the best moments. Your brain learned to chase the high of those peaks and tolerate the lows just to get back there. It's not weakness. It's neuroscience.",
+    signs: [
+      "You go back to people who've already shown you who they are",
+      "The idea of them feels better than the reality was",
+      "You're most 'in love' right after a conflict is resolved",
+      "You feel empty without the push/pull dynamic — even when you hate it",
+    ],
+    science: "Intermittent reinforcement — unpredictable rewards — produces stronger dopamine responses than consistent ones. Your brain was trained by inconsistency. The cycle of hot and cold literally hijacked your reward system. This is the same mechanism behind addiction.",
+    scripture: "Proverbs 26:11 — returning to what hurt you isn't loyalty. It's a pattern. And patterns can be broken when they're named. God didn't design you for a love that keeps you anxious.",
+    ctaTitle: "The Breakthrough Session",
+    ctaCopy: "You need to name the cycle completely — where it started, why your brain built this loop, and what a new pattern actually looks like. That's exactly what the 60-minute Breakthrough Session is built for.",
+    ctaBtn: "BOOK THE BREAKTHROUGH SESSION → $150",
+  },
+  C: {
+    label: "THE CORTISOL FOG",
+    title: "The Cortisol\nFog",
+    sub: "CHRONIC STRESS TOOK YOUR LOGIC OFFLINE",
+    what: "Your nervous system has been running on high alert for so long that it's become your baseline. You're not confused — you're <em>overwhelmed at a biological level</em>. The fog you feel when you try to think clearly about relationships isn't weakness. It's what chronic stress does to the prefrontal cortex.",
+    signs: [
+      "You know what you should do but can't seem to act on it",
+      "Emotions come out sideways — through silence, irritability, or shutdown",
+      "You've built a tough exterior but inside you're exhausted",
+      "You make decisions you regret because you can't think straight under pressure",
+    ],
+    science: "Prolonged cortisol exposure impairs the prefrontal cortex — the part of your brain responsible for judgment, emotional regulation, and decision-making. You're essentially trying to navigate relationships with a critical system running at partial capacity.",
+    scripture: "Isaiah 26:3 — 'Perfect peace' is promised to the mind that is stayed on God. That's not a passive promise. It's a prescription for what your nervous system was designed for. Rest isn't laziness. It's restoration.",
+    ctaTitle: "The Reset · Quick Clarity Call",
+    ctaCopy: "Before anything else, you need to offload what's been building. The Reset is 30 minutes to name what's happening in your system and walk away with one concrete step toward clarity.",
+    ctaBtn: "BOOK THE RESET → $75",
+  },
+  F: {
+    label: "THE FAWN RESPONSE",
+    title: "The Fawn\nResponse",
+    sub: "YOU LEARNED TO SHRINK TO KEEP THE PEACE",
+    what: "Somewhere along the way you learned that <em>keeping the peace</em> was safer than being fully yourself. You became skilled at reading rooms, anticipating needs, and adjusting who you are to avoid conflict. The world called it 'being a good man.' But it cost you your voice.",
+    signs: [
+      "You apologize even when you're not sure you were wrong",
+      "You feel responsible for other people's emotional states",
+      "Your needs end up at the bottom of the list — every time",
+      "You've been called 'too nice' — but inside you're resentful",
+    ],
+    science: "The fawn response is a trauma-adjacent survival mechanism — alongside fight, flight, and freeze. It develops when conflict feels dangerous. Your nervous system learned that self-erasure buys safety. It was adaptive once. Now it's costing you real connection.",
+    scripture: "Ephesians 4:15 — speaking truth in love doesn't mean staying quiet to keep the peace. God gave you a voice. A man who can't use his voice can't lead, love, or protect anything — including himself.",
+    ctaTitle: "The Breakthrough Session",
+    ctaCopy: "Reclaiming your voice isn't about becoming harsh — it's about becoming whole. The Breakthrough Session is where we find where the fawn response started and build you a framework for showing up fully.",
+    ctaBtn: "BOOK THE BREAKTHROUGH SESSION → $150",
+  }
+};
+
+// ── STATE ────────────────────────────────────────────────────────────────
+let current = 0;
+let answers = [];
+let scores = { D: 0, C: 0, F: 0 };
+
+// ── HELPERS ──────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active');
+    s.style.display = 'none';
+  });
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  el.style.display = id === 'intro' ? 'flex' : 'block';
+  window.scrollTo(0, 0);
+}
+
+function setProgress(pct) {
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function buildDots() {
+  const c = document.getElementById('dots');
+  c.innerHTML = '';
+  questions.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i < current ? ' done' : i === current ? ' current' : '');
+    c.appendChild(d);
+  });
+}
+
+// ── RENDER QUESTION ──────────────────────────────────────────────────────
+function renderQ() {
+  const q = questions[current];
+  document.getElementById('q-count').textContent = `QUESTION ${current + 1} OF ${questions.length}`;
+  document.getElementById('q-num').textContent = String(current + 1).padStart(2, '0');
+
+  const qt = document.getElementById('q-text');
+  qt.className = 'q-text fade-up';
+  qt.textContent = q.text;
+  void qt.offsetWidth;
+
+  const container = document.getElementById('options');
+  container.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  q.options.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'opt fade-up';
+    div.style.animationDelay = (0.08 + i * 0.07) + 's';
+    if (answers[current] === i) div.classList.add('selected');
+    div.innerHTML = `<span class="opt-key">${letters[i]}</span><span>${opt.text}</span>`;
+    div.addEventListener('click', () => selectOpt(i));
+    container.appendChild(div);
+  });
+
+  const nb = document.getElementById('next-btn');
+  nb.textContent = current === questions.length - 1 ? 'SEE MY RESULT →' : 'NEXT →';
+  nb.disabled = answers[current] === undefined;
+
+  document.getElementById('back-btn').style.display = current > 0 ? 'inline-block' : 'none';
+
+  setProgress((current / questions.length) * 90);
+  buildDots();
+}
+
+function selectOpt(i) {
+  answers[current] = i;
+  document.querySelectorAll('.opt').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('next-btn').disabled = false;
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────
+function startQuiz() {
+  current = 0; answers = []; scores = { D:0, C:0, F:0 };
+  show('quiz');
+  renderQ();
+}
+
+function nextQ() {
+  if (answers[current] === undefined) return;
+  scores[questions[current].options[answers[current]].key]++;
+  if (current < questions.length - 1) {
+    current++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+// ── RESULT ───────────────────────────────────────────────────────────────
+function showResult() {
+  setProgress(100);
+  const top = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  const r = results[top];
+
+  document.getElementById('r-label').textContent = r.label;
+  document.getElementById('r-title').textContent = r.title;
+  document.getElementById('r-sub').textContent = r.sub;
+  document.getElementById('r-what').innerHTML = r.what;
+  document.getElementById('r-science').innerHTML = r.science;
+  document.getElementById('r-scripture').innerHTML = r.scripture;
+  document.getElementById('r-cta-title').textContent = r.ctaTitle;
+  document.getElementById('r-cta-copy').textContent = r.ctaCopy;
+  document.getElementById('r-cta-btn').textContent = r.ctaBtn;
+
+  const signs = document.getElementById('r-signs');
+  signs.innerHTML = '';
+  r.signs.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'sign-item';
+    d.textContent = s;
+    signs.appendChild(d);
+  });
+
+  show('result');
+
+  // Animate result elements in
+  document.querySelectorAll('#result .result-badge, #result .result-what, #result .result-signs, #result .result-cta').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.animation = `fadeUp .55s ${i * 0.1}s ease both`;
+  });
+}
+
+function retake() {
+  current = 0; answers = []; scores = { D:0, C:0, F:0 };
+  setProgress(0);
+  show('intro');
+}
+</script>
+</body>
+</html>

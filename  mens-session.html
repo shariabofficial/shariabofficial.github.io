@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Clarity Session · Sharia Brooks</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e2c77a;
+    --gold-dim: #8a6f30;
+    --bg-dark: #0d0d0b;
+    --bg-card: #141410;
+    --bg-card2: #1a1a14;
+    --text-main: #f0ead8;
+    --text-muted: #8a8470;
+    --text-dim: #5a5448;
+    --border: rgba(201,168,76,0.25);
+    --border-bright: rgba(201,168,76,0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Noise texture overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Corner brackets ── */
+  .bracket-box {
+    position: relative;
+    padding: 40px 36px;
+  }
+  .bracket-box::before, .bracket-box::after,
+  .bracket-box .br-bl::before, .bracket-box .br-bl::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+  }
+  .bracket-box::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+  .bracket-box::after  { top: 0; right: 0; border-width: 1px 1px 0 0; }
+  .bracket-box .br-bl::before { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+  .bracket-box .br-bl::after  { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+  /* ── Top bar ── */
+  .top-bar {
+    text-align: center;
+    padding: 28px 24px 0;
+    letter-spacing: 0.22em;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    color: var(--gold-dim);
+  }
+  .top-bar span { margin: 0 10px; }
+
+  /* ── Hero ── */
+  .hero {
+    text-align: center;
+    padding: 48px 0 36px;
+  }
+  .hero .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--gold-dim);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(52px, 11vw, 76px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .hero .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold-dim);
+    margin: 0 auto 28px;
+  }
+  .hero .intro {
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text-muted);
+    max-width: 460px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ── Pill badge ── */
+  .pill-badge {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 9px 22px;
+    font-family: 'Cinzel', serif;
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+    margin-bottom: 36px;
+  }
+
+  /* ── Section header ── */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+  }
+
+  /* ── Pain points ── */
+  .pain-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 36px;
+    margin-bottom: 16px;
+  }
+  .pain-block p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--text-main);
+  }
+  .pain-block p em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ── Framework tiles ── */
+  .framework {
+    margin: 40px 0;
+  }
+  .framework-tile {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .framework-tile:last-child { border-bottom: none; }
+  .tile-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    min-width: 28px;
+    padding-top: 3px;
+  }
+  .tile-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .tile-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── Session card ── */
+  .session-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border-bright);
+    padding: 36px;
+    margin: 40px 0;
+    position: relative;
+  }
+  .session-card .popular-tag {
+    position: absolute;
+    top: -1px;
+    left: 36px;
+    background: var(--gold);
+    color: #0d0d0b;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    padding: 5px 14px;
+  }
+  .session-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 300;
+    color: #fff;
+    margin: 18px 0 6px;
+  }
+  .session-price {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .session-price span {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+  .session-features {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .session-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-muted);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    line-height: 1.5;
+  }
+  .session-features li::before {
+    content: '✦';
+    color: var(--gold-dim);
+    font-size: 9px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--gold);
+    color: #0d0d0b;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-align: center;
+    border: 1px solid var(--border-bright);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── Two-col session options ── */
+  .session-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 40px 0;
+  }
+  .session-sm {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 24px 20px;
+  }
+  .session-sm .sm-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8.5px;
+    letter-spacing: 0.22em;
+    color: var(--gold-dim);
+    margin-bottom: 10px;
+  }
+  .session-sm .sm-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .session-sm .sm-price {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  /* ── Testimonial ── */
+  .testimonial-block {
+    border-left: 2px solid var(--gold-dim);
+    padding: 20px 24px;
+    margin: 40px 0;
+    background: rgba(201,168,76,0.03);
+  }
+  .testimonial-block blockquote {
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--text-main);
+    margin-bottom: 14px;
+  }
+  .testimonial-block blockquote em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .testimonial-block cite {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    font-style: normal;
+  }
+
+  /* ── Bio strip ── */
+  .bio-strip {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+  }
+  .bio-strip .sig {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 34px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .bio-strip p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    max-width: 420px;
+    margin: 0 auto 24px;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 24px;
+  }
+  .stat-item { text-align: center; }
+  .stat-item .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .stat-item .stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 28px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .footer p {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+  }
+
+  /* ── Fade-in animation ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.22s; opacity: 0; }
+  .delay-3 { animation-delay: 0.38s; opacity: 0; }
+
+  @media (max-width: 480px) {
+    .session-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 52px; }
+    .bracket-box { padding: 28px 20px; }
+    .stats-row { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>HEALING</span>·<span>PURPOSE</span>·<span>GODFIDENCE</span>
+</div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero fade-up">
+    <p class="eyebrow">SHARIA BROOKS · 1:1 ADVISORY</p>
+    <h1>The Clarity<br>Session</h1>
+    <p class="subtitle">FOR MEN READY TO BREAK THE PATTERN</p>
+    <div class="divider"></div>
+    <p class="intro">You don't lack strength. You lack a framework. Let's find yours.</p>
+  </div>
+
+  <!-- PILL -->
+  <div style="text-align:center;" class="fade-up delay-1">
+    <span class="pill-badge">✦ PRIVATE · CONFIDENTIAL · RESULTS-FOCUSED</span>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="bracket-box fade-up delay-2">
+    <div class="br-bl"></div>
+    <p class="section-label">WHY YOU'RE HERE</p>
+    <div class="pain-block">
+      <p>You keep ending up in the <em>same dynamic</em> — different woman, same outcome. You're tired of performing strength while bleeding on the inside.</p>
+    </div>
+    <div class="pain-block">
+      <p>You want to understand <em>your pattern</em> — not be talked at, not be told to "just move on." You want clarity that actually sticks.</p>
+    </div>
+    <div class="pain-block">
+      <p>You're open to the science. You're open to God's word. You just need <em>someone who can speak both languages.</em></p>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK -->
+  <div style="padding: 8px 0;" class="fade-up delay-3">
+    <p class="section-label">THE FRAMEWORK</p>
+    <div class="framework">
+      <div class="framework-tile">
+        <span class="tile-num">01</span>
+        <div>
+          <div class="tile-title">Identify Your Pattern</div>
+          <div class="tile-desc">Dopamine Loop · Cortisol Fog · Fawn Response — we name what's been nameless and stop the cycle from the root.</div>
+        </div>
+      </div>
+      <div class="framework-tile">
+        <span class="tile-num">02</span>
+        <div>
+          <div class="tile-title">Science + Scripture</div>
+          <div class="tile-desc">Neuroscience explains how you got here. The Word of God shows you how to leave. Both are necessary. Both are used.</div>
+        </div>
+      </div>
+      <div class="framework-tile">
+        <span class="tile-num">03</span>
+        <div>
+          <div class="tile-title">A Concrete Next Step</div>
+          <div class="tile-desc">You leave every session with one clear action — not homework, not theory. A step built around your actual life.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED SESSION -->
+  <div class="session-card">
+    <div class="popular-tag">✦ MOST REQUESTED</div>
+    <div class="session-name">The Breakthrough Session</div>
+    <div class="session-price">$150 <span>· 60 MINUTES · 1:1 PRIVATE</span></div>
+    <ul class="session-features">
+      <li>Deep-dive pattern analysis — we find the root, not just the fruit</li>
+      <li>Science-backed + scripture-grounded framework tailored to you</li>
+      <li>Relationship audit: communication style, attachment, triggers</li>
+      <li>One clear, actionable next step before you leave the call</li>
+      <li>Private Zoom · Fully confidential · No judgment</li>
+    </ul>
+    <a href="#book" class="btn-primary">BOOK YOUR SESSION →</a>
+  </div>
+
+  <!-- SMALLER OPTIONS -->
+  <p class="section-label" style="margin-top:8px;">ALL SESSIONS</p>
+  <div class="session-grid">
+    <div class="session-sm">
+      <p class="sm-label">QUICK CLARITY · 30 MIN</p>
+      <p class="sm-name">The Reset</p>
+      <p class="sm-price">$75</p>
+      <a href="#book" class="btn-secondary">BOOK →</a>
+    </div>
+    <div class="session-sm">
+      <p class="sm-label">4-WEEK PRIVATE · ONGOING</p>
+      <p class="sm-name">The Restoration Intensive</p>
+      <p class="sm-price">$750</p>
+      <a href="#book" class="btn-secondary">BOOK →</a>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL -->
+  <div class="testimonial-block">
+    <blockquote>
+      "I don't really have <em>women in Christ</em> like around me. I really appreciated your advice and your help. I feel like I might probably take you up on the advice for men — just to give a bit more context to what I should really do going forward."
+    </blockquote>
+    <cite>— LIAM, UK · FROM YOUR DMS ♦</cite>
+  </div>
+
+  <!-- BIO STRIP -->
+  <div class="bio-strip">
+    <div class="sig">Sharia Brooks</div>
+    <p>Single mom for over 10 years. Lost her mother, sister, and a 5-year relationship in the same year — and didn't heal by willpower. She healed by understanding the science and anchoring it to the Word of God.</p>
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Years Single Mom</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2</span>
+        <span class="stat-label">Books Written</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">279K</span>
+        <span class="stat-label">Reel Views</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOK ANCHOR SECTION -->
+  <div id="book" class="bracket-box" style="margin-bottom: 48px;">
+    <div class="br-bl"></div>
+    <p class="section-label" style="text-align:center;">BOOK YOUR SESSION</p>
+    <p style="text-align:center; font-size:15px; color:var(--text-muted); margin-bottom:28px; line-height:1.7;">
+      Select your session above and you'll be directed to a secure payment page. Once payment is confirmed, you'll receive a calendar link to schedule your private call.
+    </p>
+    <!-- Stan.store embed note — replace href with your actual Stan booking link -->
+    <a href="https://stan.store/shariabofficial" target="_blank" class="btn-primary" style="margin-bottom:12px;">
+      BOOK ON STAN.STORE →
+    </a>
+    <p style="text-align:center; font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.18em; color:var(--text-dim); margin-top:14px;">
+      SECURE PAYMENT · INSTANT CONFIRMATION · @SHARIABOFFICIAL
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>© SHARIA BROOKS · THE RESTORATION SERIES · @SHARIABOFFICIAL</p>
+</div>
+
+</body>
+</html>
