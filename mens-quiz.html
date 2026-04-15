@@ -337,7 +337,7 @@ body::after{
       <p class="cta-label">YOUR RECOMMENDED NEXT STEP</p>
       <h3 id="r-cta-title"></h3>
       <p id="r-cta-copy"></p>
-      <a id="r-cta-btn" href="/mens-session" class="btn btn-gold btn-full"></a>
+      <a id="r-cta-btn" href="#" target="_blank" class="btn btn-gold btn-full"></a>
       <button class="retake" onclick="retake()">↩ RETAKE THE QUIZ</button>
     </div>
   </div>
@@ -413,6 +413,7 @@ const results = {
     ctaTitle: "The Breakthrough Session",
     ctaCopy: "You need to name the cycle completely — where it started, why your brain built this loop, and what a new pattern actually looks like. That's exactly what the 60-minute Breakthrough Session is built for.",
     ctaBtn: "BOOK THE BREAKTHROUGH SESSION → $150",
+    ctaLink: "https://stan.store/shariabofficial/p/the-breakthrough-session-60-mins",
   },
   C: {
     label: "THE CORTISOL FOG",
@@ -430,6 +431,7 @@ const results = {
     ctaTitle: "The Reset · Quick Clarity Call",
     ctaCopy: "Before anything else, you need to offload what's been building. The Reset is 30 minutes to name what's happening in your system and walk away with one concrete step toward clarity.",
     ctaBtn: "BOOK THE RESET → $75",
+    ctaLink: "https://stan.store/shariabofficial/p/the-reset--quick-clarity-call-30-mins",
   },
   F: {
     label: "THE FAWN RESPONSE",
@@ -447,6 +449,7 @@ const results = {
     ctaTitle: "The Breakthrough Session",
     ctaCopy: "Reclaiming your voice isn't about becoming harsh — it's about becoming whole. The Breakthrough Session is where we find where the fawn response started and build you a framework for showing up fully.",
     ctaBtn: "BOOK THE BREAKTHROUGH SESSION → $150",
+    ctaLink: "https://stan.store/shariabofficial/p/the-breakthrough-session-60-mins",
   }
 };
 
@@ -559,7 +562,9 @@ function showResult() {
   document.getElementById('r-scripture').innerHTML = r.scripture;
   document.getElementById('r-cta-title').textContent = r.ctaTitle;
   document.getElementById('r-cta-copy').textContent = r.ctaCopy;
-  document.getElementById('r-cta-btn').textContent = r.ctaBtn;
+  const ctaBtn = document.getElementById('r-cta-btn');
+  ctaBtn.textContent = r.ctaBtn;
+  ctaBtn.href = r.ctaLink;
 
   const signs = document.getElementById('r-signs');
   signs.innerHTML = '';
